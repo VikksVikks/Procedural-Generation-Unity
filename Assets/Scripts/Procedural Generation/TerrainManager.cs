@@ -29,7 +29,7 @@ public class TerrainManager : MonoBehaviour
     public Mesh mesh;
     public MeshFilter filter;
 
-    public MeshGen meshGen;
+    public MeshGen meshGen = new MeshGen();
     //----------------------------
 
     public NoiseSettings noiseSettings;

@@ -7,7 +7,7 @@ using UnityEngine;
 
 
 [ExecuteInEditMode]
-public class MeshGen : MonoBehaviour
+public class MeshGen
 {
 
 
