@@ -1,0 +1,54 @@
+
+https://mythcreants.com/blog/how-to-color-your-map-using-science/
+
+
+TectonicsManager:
+
+	Holds all Plates Data etc.
+
+Plates:
+
+
+
+Borders Key-Value pair of : Key-Index of neighbour, value = vector of border vertex
+
+
+
+
+PresssureMap:
+	Accepts data and handles making maps
+
+Do elevation and plate movement 
+calculate plate type based on elevation: + Land , - Ocean
+
+calculate deltas of velocity vectors v: v1 = movement1*magnitude1;
+
+delta =  Max(v1-v2,v2-v1);
+
+if delta + => moving from each other -> plains etc
+if delta - => coming closer -> hills, mountains
+
+Calculate mountains.
+
+
+Split plates into smaller regions as Mountains,hills, plains etc of similar type.
+
+
+
+	1.Grab ALL water at equator regions
+	2. Move along wind north and South
+	3. Dumping a bit overTime
+	4.Mountains create big dump zones with possible shadowing anything beyond (create plains bushlands beyond)
+	5. move until Poles where hurricanes are created and move towards beaches
+
+Direction calculus:
+
+
+Dot . Product:
+
+v1.v2 > 0 => point in same direction
+v1<v2 < point in oposite dir -> 
+
+
+
+Sum components of the vectors to get resultant vector v3 = (v1.x+v2.x, v1.y+v2.y)

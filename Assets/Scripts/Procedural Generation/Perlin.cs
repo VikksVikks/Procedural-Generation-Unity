@@ -4,13 +4,14 @@ using UnityEngine;
 // Class That Generates 2d Noise map for terrain using perlin noise
 // Output is saved into local 
 
-
-public class Perlin : MonoBehaviour 
+[System.Serializable]
+public class Perlin
 {
 
     // Start is called before the first frame update
     //Vector3[,] vertexMap;
     public bool Add=false;
+
     public float[,] heightMap;
     public float perlinXScale = 0.01f;
     public float perlinYScale = 0.01f;
@@ -20,11 +21,54 @@ public class Perlin : MonoBehaviour
     public float perlinPersistance = 8;
     public float perlinHeightScale = 0.09f;
 
+    public float Perlinfrequency = 1f;
+    public float PerlinAmplitude = 1f;
+    public int  PerlinSamples = 4;
+
     // Update is called once per frame
 
+    public Perlin()
+    {
+       
+    }
+
+    public float[,] GenerateMultipleNoiseMap(float[,] heightMap)
+    {
+        int xMax = heightMap.GetLength(0);
+        int zMax = heightMap.GetLength(1);
 
 
+        for (int z = 0; z < zMax; z++)
+        {
+            for (int x = 0; x < xMax; x++)
+            {
 
+
+                heightMap[x, z] += MultipleNoise(x + perlinOffsetX, z + perlinOffsetY, PerlinSamples)*perlinHeightScale;
+
+
+            }
+        }
+        return heightMap;
+
+
+    }
+    public float MultipleNoise(float x , float y, int samples)
+    {
+        float noiseSum = 0;
+        float amplitude = PerlinAmplitude;
+        float frequency = Perlinfrequency;
+
+        for (int i = 0; i < samples; i++)
+        {
+            noiseSum = Mathf.PerlinNoise(x * frequency, y * frequency) * amplitude;
+            frequency *= 2;
+            amplitude *= 0.5f;
+        }
+        return noiseSum;
+
+       
+    }
     public float[,] GenerateNoiseMap(float[,] heightMap)
     {
         int xMax = heightMap.GetLength(0);
